@@ -1,0 +1,31 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version "1.4.21"
+    id 'org.jetbrains.kotlin.plugin.serialization' version "1.4.21"
+
+    id "net.mamoe.mirai-console" version "2.0.0" // mirai-console version
+}
+
+dependencies {
+    // The needs of the bot
+    implementation("io.ktor:ktor-client-serialization:1.4.0")
+
+    compileOnly("net.mamoe:mirai-core:2.0.0") // mirai-core 的 API
+    compileOnly("net.mamoe:mirai-console:2.0.0") // 后端
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+version = "0.1.0"
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+    maven{
+        url("https://dl.bintray.com/kotlin/kotlin-eap")
+    }
+}
